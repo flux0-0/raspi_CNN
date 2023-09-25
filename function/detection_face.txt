@@ -1,0 +1,13 @@
+import cv2 
+import os
+detector = cv2.CascadeClassifier('D:/Final/haarcascade_frontalface_default.xml')
+filename = 'D:/Final/data/anh.1.6.jpg '  #load ảnh trong folder data
+frame = cv2.imread(filename)  #frame biểu diễn ảnh dưới dạng số học theo từng pixel 
+gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) #chuyển ảnh sang màu xám 
+fa = detector.detectMultiScale(gray, 1.1, 5) #phát hiện khuôn mặt trong ảnh xám 
+for(x,y,w,h) in fa:
+    cv2.rectangle(gray,(x,y),(x+w, y+h),(0,255,0), 2)
+
+cv2.imshow('Detected Faces', gray)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
